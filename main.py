@@ -37,6 +37,10 @@ def resource_path(relative_path):
     base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
     return os.path.join(base_path, relative_path)
 
+#functions for window click events, unfocus the window when clicked
+def unfocus(event):
+    root.focus()
+
 #functions for program
 def startButton():
     global keyboardHook
@@ -131,6 +135,7 @@ backgroundImage = Image.open(resource_path("waifu.png"))
 backgroundPhoto = ImageTk.PhotoImage(backgroundImage)
 #create the background image from the loaded image
 canvas.create_image(0, 0, anchor="nw", image=backgroundPhoto)
+canvas.bind("<Button-1>", unfocus)
 
 
 #Set fonts for use later
